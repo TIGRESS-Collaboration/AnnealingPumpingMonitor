@@ -1,0 +1,74 @@
+<html>
+    <head>
+        <title>GRSPi01@TRIUMF, Plots</title>
+        <style>
+            body {
+                width: 70em;
+                margin: 0 auto;
+                font-family: Tahoma, Verdana, Arial, sans-serif;
+            }
+        </style>
+		<script type="text/javascript"
+			src="node_modules/dygraphs/dygraph-combined-dev.js"></script>
+        <script type="text/javascript"
+			src="node_modules/dygraphs/extras/synchronizer.js"></script>
+	</head>
+	<body>
+		<h1>GRSPi01@TRIUMF</h1>
+		<div id="gdiv"
+  			style="width:70em; height:27em;">
+		</div>
+		<div id="spacer" style="height:2em;"></div>
+		<div id="gdiv2"
+			style="width:70em; height:27em;">
+		</div>
+        <div id="spacer" style="height:2em;"></div>
+
+        <div id="gdiv3"
+            style="width:70em; height:27em;">
+        </div>
+        <div id="spacer" style="height:2em;"></div>
+
+        <div id="gdiv4"
+            style="width:70em; height:27em;">
+        </div>
+       <div id="spacer" style="height:2em;"></div>
+
+
+        <script type="text/javascript">
+			var g = [];
+
+            g1 = new Dygraph(
+                document.getElementById("gdiv"),
+                "datalogs/datalog.csv",
+                {
+                    title: 'Temperature (RTD1)',
+                    ylabel: 'Temperature (C)',
+                    legend: false,
+                    visibility: [true,false,false,false],
+                    rollPeriod: 1,
+                    showRoller: true
+                }
+            );
+
+            g2 = new Dygraph(
+                document.getElementById("gdiv2"),
+                "datalogs/datalog.csv",
+                {
+                    title: 'Pressure (IG)',
+                    ylabel: 'Pressure (Torr)',
+					logscale: true,
+                    labelsSeparateLines: true,
+                    visibility: [false,false,true,false],
+                    rollPeriod: 1,
+                    showRoller: true
+                }
+            );
+
+            var sync = Dygraph.synchronize(g1,g2,  {zoom: true, range: false, selection: true});
+
+
+        </script>
+
+	</body>
+</html>
